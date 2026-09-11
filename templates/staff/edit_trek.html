@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Update Trek</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="navbar">
+
+    <h2>Trekking Management System</h2>
+
+    <div>
+
+        <a href="/staff/dashboard">Dashboard</a>
+
+        <a href="/logout">Logout</a>
+
+    </div>
+
+</div>
+
+<div class="box">
+
+<h2>Update Trek</h2>
+
+<form method="POST">
+
+<label>Available Slots</label>
+
+<input
+type="number"
+name="slots"
+value="{{ trek.available_slots }}"
+required>
+
+<br><br>
+
+<label>Status</label>
+
+<select name="status">
+
+<option value="Open"
+{% if trek.status=="Open" %}
+selected
+{% endif %}
+>
+
+Open
+
+</option>
+
+<option value="Closed"
+{% if trek.status=="Closed" %}
+selected
+{% endif %}
+>
+
+Closed
+
+</option>
+
+<option value="Completed"
+{% if trek.status=="Completed" %}
+selected
+{% endif %}
+>
+
+Completed
+
+</option>
+
+</select>
+
+<br><br>
+
+<input
+type="submit"
+value="Update">
+
+</form>
+
+<br>
+
+<a href="/staff/dashboard">
+
+Back
+
+</a>
+
+</div>
+
+</body>
+
+</html>

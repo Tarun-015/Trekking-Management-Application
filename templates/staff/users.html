@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>Registered Users</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="navbar">
+
+    <h2>Trekking Management System</h2>
+
+    <div>
+
+        <a href="/staff/dashboard">Dashboard</a>
+
+        <a href="/logout">Logout</a>
+
+    </div>
+
+</div>
+
+<div class="box">
+
+<h2>{{ trek.name }}</h2>
+
+<h3>Registered Users</h3>
+
+
+
+<table border="1" cellpadding="10">
+
+<tr>
+
+<th>Name</th>
+
+<th>Email</th>
+
+<th>Booking Date</th>
+
+<th>Status</th>
+
+</tr>
+
+{% for booking in bookings %}
+
+<tr>
+
+<td>{{ booking.user.name }}</td>
+
+<td>{{ booking.user.email }}</td>
+
+<td>{{ booking.booking_date }}</td>
+
+<td>{{ booking.status }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+<br>
+
+<a href="/staff/dashboard">
+
+Back
+
+</a>
+
+</div>
+
+</body>
+
+</html>

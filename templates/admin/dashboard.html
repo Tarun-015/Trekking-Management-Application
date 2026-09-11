@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>Admin Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="navbar">
+
+    <h2>Trekking Management System</h2>
+
+    <div>
+
+        <a href="/admin/dashboard">Dashboard</a>
+        <a href="/admin/treks">Treks</a>
+        <a href="/admin/users">Users</a>
+        <a href="/logout">Logout</a>
+
+    </div>
+
+</div>
+
+<div class="container">
+
+<h1>Admin Dashboard</h1>
+
+<div class="cards">
+
+<div class="card">
+
+<h2>{{ total_treks }}</h2>
+
+<p>Total Treks</p>
+
+</div>
+
+<div class="card">
+
+<h2>{{ total_users }}</h2>
+
+<p>Total Users</p>
+
+</div>
+
+<div class="card">
+
+<h2>{{ total_staff }}</h2>
+
+<p>Total Staff</p>
+
+</div>
+
+<div class="card">
+
+<h2>{{ pending_staff }}</h2>
+
+<p>Pending Staff</p>
+
+</div>
+
+<div class="card">
+
+<h2>{{ total_bookings }}</h2>
+
+<p>Total Bookings</p>
+
+</div>
+
+</div>
+
+<h2>Quick Actions</h2>
+
+<div class="action-grid">
+
+<a href="/admin/treks" class="btn">Manage Treks</a>
+
+<a href="/admin/add_trek" class="btn">Add Trek</a>
+
+<a href="/admin/users" class="btn">Manage Users</a>
+
+<a href="/admin/bookings" class="btn">View Bookings</a>
+
+</div>
+
+</div>
+
+</body>
+
+</html>

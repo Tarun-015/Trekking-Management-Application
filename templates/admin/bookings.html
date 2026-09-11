@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>Manage Bookings</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="box">
+
+<h2>All Booking Records</h2>
+
+<br>
+
+<table>
+
+<tr>
+
+    <th>Booking ID</th>
+    <th>User</th>
+    <th>Trek</th>
+    <th>Booking Date</th>
+    <th>Booking Status</th>
+    <th>Payment Status</th>
+    <th>Action</th>
+
+</tr>
+
+{% for booking in bookings %}
+
+<tr>
+
+    <td>{{ booking.id }}</td>
+
+    <td>{{ booking.user.name }}</td>
+
+    <td>{{ booking.trek.name }}</td>
+
+    <td>{{ booking.booking_date }}</td>
+
+    <td>
+
+        {% if booking.status == "Booked" %}
+
+            <span style="color:green;font-weight:bold;">
+                {{ booking.status }}
+            </span>
+
+        {% elif booking.status == "Completed" %}
+
+            <span style="color:blue;font-weight:bold;">
+                {{ booking.status }}
+            </span>
+
+        {% elif booking.status == "Cancelled" %}
+
+            <span style="color:red;font-weight:bold;">
+                {{ booking.status }}
+            </span>
+
+        {% else %}
+
+            {{ booking.status }}
+
+        {% endif %}
+
+    </td>
+
+    <td>
+
+        {% if booking.payment_status == "Paid" %}
+
+            <span style="color:green;font-weight:bold;">
+                {{ booking.payment_status }}
+            </span>
+
+        {% elif booking.payment_status == "Refunded" %}
+
+            <span style="color:orange;font-weight:bold;">
+                {{ booking.payment_status }}
+            </span>
+
+        {% elif booking.payment_status == "Pending" %}
+
+            <span style="color:red;font-weight:bold;">
+                {{ booking.payment_status }}
+            </span>
+
+        {% else %}
+
+            {{ booking.payment_status }}
+
+        {% endif %}
+
+    </td>
+
+    <td>
+
+        {% if booking.status == "Booked" %}
+
+            <a href="/admin/complete_booking/{{ booking.id }}"
+               class="btn">
+
+                Complete
+
+            </a>
+
+            <br><br>
+
+            <a href="/admin/cancel_booking/{{ booking.id }}"
+               class="btn"
+               onclick="return confirm('Are you sure you want to cancel this booking?')">
+
+                Cancel
+
+            </a>
+
+        {% elif booking.status == "Completed" %}
+
+            <span style="color:blue;font-weight:bold;">
+                Trek Completed
+            </span>
+
+        {% elif booking.status == "Cancelled" %}
+
+            <span style="color:red;font-weight:bold;">
+                Booking Cancelled
+            </span>
+
+        {% endif %}
+
+    </td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+<br><br>
+
+<a href="/admin/dashboard" class="btn">
+
+Back to Dashboard
+
+</a>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Add Trek</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="navbar">
+    <h2>Trekking Management System</h2>
+
+    <div>
+        <a href="/admin/dashboard">Dashboard</a>
+        <a href="/admin/treks">Treks</a>
+        <a href="/admin/users">Users</a>
+        <a href="/logout">Logout</a>
+    </div>
+</div>
+
+<div class="box">
+<h2>Add New Trek</h2>
+<form method="POST">
+
+<input type="text"
+       name="name"
+       placeholder="Trek Name"
+       required>
+
+<input type="text"
+       name="location"
+       placeholder="Location"
+       required>
+
+<select name="difficulty">
+
+<option>Easy</option>
+
+<option>Moderate</option>
+
+<option>Hard</option>
+
+</select>
+<input type="number"
+       name="duration"
+       placeholder="Duration (Days)"
+       required>
+
+<input type="number"
+       name="slots"
+       placeholder="Available Slots"
+       required>
+
+<label>Assign Staff</label>
+<select name="staff_id">
+
+{% for staff in staffs %}
+
+<option value="{{ staff.id }}">
+
+{{ staff.name }}
+
+</option>
+
+{% endfor %}
+
+</select>
+<label>Start Date</label>
+
+<input type="date"
+       name="start_date"
+       required>
+
+<label>End Date</label>
+
+<input type="date"
+       name="end_date"
+       required>
+
+<textarea
+name="description"
+placeholder="Description">
+</textarea>
+
+<br><br>
+
+<button type="submit">
+
+Add Trek
+
+</button>
+
+</form>
+
+<br>
+
+<a href="/admin/dashboard">
+Back
+</a>
+
+</div>
+</body>
+</html>

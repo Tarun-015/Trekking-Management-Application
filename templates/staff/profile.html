@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>Staff Profile</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="navbar">
+
+    <h2>Trekking Management System</h2>
+    <div>
+
+        <a href="/staff/dashboard">Dashboard</a>
+        <a href="/logout">Logout</a>
+
+    </div>
+
+</div>
+
+<div class="box">
+
+<h2>My Profile</h2>
+
+<form method="POST">
+
+<label>Name</label>
+
+<input
+type="text"
+name="name"
+value="{{ user.name }}"
+required>
+
+<label>Email</label>
+
+<input
+type="email"
+name="email"
+value="{{ user.email }}"
+required>
+
+<label>Password</label>
+
+<input
+type="password"
+name="password"
+value="{{ user.password }}"
+required>
+
+<input
+type="submit"
+value="Update Profile">
+
+</form>
+
+<br>
+
+<a href="/staff/dashboard" class="btn">
+Back to Dashboard
+</a>
+
+</div>
+</body>
+</html>

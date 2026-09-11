@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>Staff Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="box">
+
+<h2>Assigned Treks</h2>
+
+<table>
+
+<tr>
+
+<th>ID</th>
+<th>Name</th>
+<th>Location</th>
+<th>Days</th>
+<th>Slots</th>
+<th>Status</th>
+<th>Participants</th>
+<th>Action</th>
+
+</tr>
+
+{% for trek in treks %}
+
+<tr>
+
+<td>{{ trek.id }}</td>
+
+<td>{{ trek.name }}</td>
+
+<td>{{ trek.location }}</td>
+
+<td>{{ trek.duration }}</td>
+
+<td>{{ trek.available_slots }}</td>
+
+<td>{{ trek.status }}</td>
+
+<td>
+
+<a href="/staff/users/{{ trek.id }}">
+
+View Users
+
+</a>
+
+</td>
+
+<td>
+
+<a href="/staff/edit_trek/{{ trek.id }}">
+
+Update
+
+</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+<div class="cards">
+
+    <div class="card">
+        <h3>{{ total_treks }}</h3>
+        <p>Assigned Treks</p>
+    </div>
+
+    <div class="card">
+        <h3>{{ open_treks }}</h3>
+        <p>Open Treks</p>
+    </div>
+
+    <div class="card">
+        <h3>{{ completed_treks }}</h3>
+        <p>Completed Treks</p>
+    </div>
+
+    <div class="card">
+        <h3>{{ participants }}</h3>
+        <p>Total Participants</p>
+    </div>
+
+</div>
+
+<br>
+
+</table>
+
+<br>
+
+<a href="/staff/profile" class="btn">
+Profile
+</a>
+
+<a href="/logout" class="btn">
+Logout
+</a>
+
+</div>
+
+</body>
+
+</html>

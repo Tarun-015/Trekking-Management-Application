@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>Trekking History</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="navbar">
+
+    <h2>Trekking Management System</h2>
+
+    <div>
+
+        <a href="/user/dashboard">Dashboard</a>
+
+        <a href="/user/bookings">Bookings</a>
+
+        <a href="/user/history">History</a>
+
+        <a href="/logout">Logout</a>
+
+    </div>
+
+</div>
+
+<div class="box">
+
+<h2>Completed Treks</h2>
+
+<table border="1" cellpadding="10">
+
+<tr>
+
+<th>Trek</th>
+<th>Booking Date</th>
+<th>Status</th>
+
+</tr>
+
+{% for booking in history %}
+
+<tr>
+
+<td>{{ booking.trek.name }}</td>
+
+<td>{{ booking.booking_date }}</td>
+
+<td>{{ booking.status }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+<br>
+
+<a href="/user/dashboard">
+
+Back
+
+</a>
+
+</div>
+
+</body>
+
+</html>

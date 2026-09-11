@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>Update Profile</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="box">
+
+<h2>Update Profile</h2>
+
+<form method="POST">
+
+<label>Name</label>
+
+<input
+type="text"
+name="name"
+value="{{ user.name }}"
+required>
+
+<label>Email</label>
+
+<input
+type="email"
+name="email"
+value="{{ user.email }}"
+required>
+
+<label>Password</label>
+
+<input
+type="password"
+name="password"
+value="{{ user.password }}"
+required>
+
+<br>
+
+<input
+type="submit"
+value="Update Profile">
+
+</form>
+
+<br>
+
+<a href="/user/dashboard" class="btn">
+
+Back
+
+</a>
+
+</div>
+
+</body>
+
+</html>

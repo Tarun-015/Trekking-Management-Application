@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>All Users</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="navbar">
+
+    <h2>Trekking Management System</h2>
+
+    <div>
+
+        <a href="/admin/dashboard">Dashboard</a>
+
+        <a href="/admin/treks">Treks</a>
+
+        <a href="/admin/users">Users</a>
+
+        <a href="/logout">Logout</a>
+
+    </div>
+
+</div>    
+
+<div class="box">
+
+<h2>All Users</h2>
+
+<form method="GET">
+
+    <input
+        type="text"
+        name="search"
+        placeholder="Search Trek by Name or ID"
+        value="{{ search }}">
+
+    <input
+        type="submit"
+        value="Search">
+
+</form>
+
+<br>
+
+<table border="1" cellpadding="10">
+
+<tr>
+
+<th>ID</th>
+
+<th>Name</th>
+
+<th>Email</th>
+
+<th>Role</th>
+
+<th>Status</th>
+
+<th>Action</th>
+
+</tr>
+
+{% for user in users %}
+
+<tr>
+
+<td>{{ user.id }}</td>
+
+<td>{{ user.name }}</td>
+
+<td>{{ user.email }}</td>
+
+<td>{{ user.role }}</td>
+
+<td>{{ user.status }}</td>
+
+<td>
+
+{% if user.role=="staff" and user.status=="pending" %}
+
+<a href="/admin/approve_staff/{{ user.id }}">Approve</a>
+
+|
+
+{% endif %}
+
+{% if user.role!="admin" and user.status!="blacklisted" %}
+
+<a href="/admin/blacklist/{{ user.id }}">Blacklist</a>
+
+{% endif %}
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+<br>
+
+<a href="/admin/dashboard">
+
+Back
+
+</a>
+
+</div>
+
+</body>
+
+</html>

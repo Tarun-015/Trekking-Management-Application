@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>Manage Treks</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="box">
+
+<h2>Manage Treks</h2>
+
+<br>
+
+<a href="/admin/add_trek" class="btn">
+    Add New Trek
+</a>
+
+<br><br>
+
+<form method="GET">
+
+    <input
+        type="text"
+        name="search"
+        placeholder="Search Trek by Name or ID"
+        value="{{ search }}">
+
+    <input
+        type="submit"
+        value="Search">
+
+</form>
+
+<br>
+
+<table>
+
+<tr>
+
+    <th>ID</th>
+    <th>Name</th>
+    <th>Location</th>
+    <th>Difficulty</th>
+    <th>Days</th>
+    <th>Start Date</th>
+    <th>End Date</th>
+    <th>Slots</th>
+    <th>Bookings</th>
+    <th>Status</th>
+    <th>Assigned Staff</th>
+    <th>Action</th>
+
+</tr>
+
+{% for trek in treks %}
+
+<tr>
+
+    <td>{{ trek.id }}</td>
+
+    <td>{{ trek.name }}</td>
+
+    <td>{{ trek.location }}</td>
+
+    <td>{{ trek.difficulty }}</td>
+
+    <td>{{ trek.duration }}</td>
+
+    <td>{{ trek.start_date }}</td>
+
+    <td>{{ trek.end_date }}</td>
+
+    <td>{{ trek.available_slots }}</td>
+
+    <td>{{ booking_counts[trek.id] }}</td>
+
+    <td>{{ trek.status }}</td>
+
+    <td>
+
+        {% if trek.staff %}
+
+            {{ trek.staff.name }}
+
+        {% else %}
+
+            Not Assigned
+
+        {% endif %}
+
+    </td>
+
+    <td>
+
+        <a href="/admin/edit_trek/{{ trek.id }}">
+            Edit
+        </a>
+
+        |
+
+        <a href="/admin/delete_trek/{{ trek.id }}"
+           onclick="return confirm('Are you sure you want to delete this trek?')">
+
+            Delete
+
+        </a>
+
+    </td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+<br>
+
+<a href="/admin/dashboard" class="btn">
+    Back to Dashboard
+</a>
+
+</div>
+
+</body>
+
+</html>

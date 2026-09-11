@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Edit Trek</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="navbar">
+    <h2>Trekking Management System</h2>
+
+    <div>
+        <a href="/admin/dashboard">Dashboard</a>
+        <a href="/admin/treks">Treks</a>
+        <a href="/admin/users">Users</a>
+        <a href="/logout">Logout</a>
+    </div>
+</div>
+
+<div class="box">
+
+<h2>Edit Trek</h2>
+
+<form method="POST">
+
+<label>Trek Name</label>
+
+<input
+type="text"
+name="name"
+value="{{ trek.name }}"
+required>
+
+<br><br>
+
+<label>Location</label>
+
+<input
+type="text"
+name="location"
+value="{{ trek.location }}"
+required>
+
+<br><br>
+
+<label>Difficulty</label>
+
+<select name="difficulty">
+
+<option value="Easy"
+{% if trek.difficulty=="Easy" %}
+selected
+{% endif %}>
+Easy
+</option>
+
+<option value="Moderate"
+{% if trek.difficulty=="Moderate" %}
+selected
+{% endif %}>
+Moderate
+</option>
+
+<option value="Hard"
+{% if trek.difficulty=="Hard" %}
+selected
+{% endif %}>
+Hard
+</option>
+
+</select>
+
+<br><br>
+
+<label>Duration (Days)</label>
+
+<input
+type="number"
+name="duration"
+value="{{ trek.duration }}"
+required>
+
+<br><br>
+
+<label>Available Slots</label>
+
+<input
+type="number"
+name="slots"
+value="{{ trek.available_slots }}"
+required>
+
+<br><br>
+
+<label>Assign Staff</label>
+
+<select name="staff_id">
+
+<option value="">Not Assigned</option>
+
+{% for staff in staffs %}
+
+<option
+value="{{ staff.id }}"
+{% if trek.staff_id==staff.id %}
+selected
+{% endif %}
+>
+
+{{ staff.name }}
+
+</option>
+
+{% endfor %}
+
+</select>
+
+<br><br>
+
+<input
+type="submit"
+value="Update Trek">
+
+</form>
+
+<br>
+
+<a href="/admin/treks">
+Back
+</a>
+</div>
+</body>
+</html>

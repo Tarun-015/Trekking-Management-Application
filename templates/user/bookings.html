@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>My Bookings</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="navbar">
+
+    <h2>Trekking Management System</h2>
+
+    <div>
+
+        <a href="/user/dashboard">Dashboard</a>
+
+        <a href="/user/bookings">Bookings</a>
+
+        <a href="/user/history">History</a>
+
+        <a href="/logout">Logout</a>
+
+    </div>
+
+</div>
+
+<div class="box">
+
+<h2>My Bookings</h2>
+
+<table border="1" cellpadding="10">
+
+<tr>
+
+<th>Booking ID</th>
+<th>Trek</th>
+<th>Booking Date</th>
+<th>Status</th>
+
+</tr>
+
+{% for booking in bookings %}
+
+<tr>
+
+<td>{{ booking.id }}</td>
+
+<td>{{ booking.trek.name }}</td>
+
+<td>{{ booking.booking_date }}</td>
+
+<td>{{ booking.status }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+<br>
+
+<a href="/user/dashboard">
+
+Back
+
+</a>
+
+</div>
+
+</body>
+
+</html>

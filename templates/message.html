@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Message</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body class="auth-page">
+
+<div class="auth-box">
+
+<h2>{{ title }}</h2>
+
+<p style="text-align:center;
+font-size:18px;
+color:darkred;
+margin:20px 0;">
+
+{{ message }}
+
+</p>
+
+<div style="text-align:center;">
+
+<a href="{{ back_url }}" class="btn">
+
+Go Back
+
+</a>
+
+</div>
+
+</div>
+</body>
+</html>

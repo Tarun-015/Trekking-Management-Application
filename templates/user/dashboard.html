@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>User Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="box">
+
+<h2>Available Treks</h2>
+
+<form method="GET">
+
+<input
+type="text"
+name="search"
+placeholder="Search Trek"
+value="{{ search }}">
+
+<select name="difficulty">
+
+<option value="">All Difficulty</option>
+
+<option value="Easy"
+{% if difficulty == "Easy" %}selected{% endif %}>
+Easy
+</option>
+
+<option value="Moderate"
+{% if difficulty == "Moderate" %}selected{% endif %}>
+Moderate
+</option>
+
+<option value="Hard"
+{% if difficulty == "Hard" %}selected{% endif %}>
+Hard
+</option>
+
+</select>
+
+<input
+type="submit"
+value="Search">
+
+</form>
+
+<br>
+
+<table>
+
+<tr>
+
+<th>Name</th>
+<th>Location</th>
+<th>Difficulty</th>
+<th>Days</th>
+<th>Available Slots</th>
+<th>Status</th>
+<th>Action</th>
+
+</tr>
+
+{% for trek in treks %}
+
+<tr>
+
+<td>{{ trek.name }}</td>
+
+<td>{{ trek.location }}</td>
+
+<td>{{ trek.difficulty }}</td>
+
+<td>{{ trek.duration }}</td>
+
+<td>{{ trek.available_slots }}</td>
+
+<td>{{ trek.status }}</td>
+
+<td>
+
+{% if trek.id in booked_trek_ids %}
+
+<span style="color:green;font-weight:bold;">
+Already Booked
+</span>
+
+{% elif trek.status != "Open" %}
+
+<span style="color:red;font-weight:bold;">
+Closed
+</span>
+
+{% elif trek.available_slots <= 0 %}
+
+<span style="color:red;font-weight:bold;">
+Full
+</span>
+
+{% else %}
+
+<a href="/user/book/{{ trek.id }}" class="btn">
+Book
+</a>
+
+{% endif %}
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+<br>
+
+<a href="/user/bookings" class="btn">
+My Bookings
+</a>
+
+<a href="/user/history" class="btn">
+History
+</a>
+
+<a href="/user/profile" class="btn">
+Profile
+</a>
+
+<a href="/logout" class="btn">
+Logout
+</a>
+
+</div>
+
+</body>
+
+</html>
